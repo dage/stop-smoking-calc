@@ -8,25 +8,30 @@ This project evaluates the coding capabilities of three state-of-the-art AI mode
 
 ### 🔄 Iterative Approach
 
-This comparison uses an **iterative development approach** where each model will go through multiple iterations to refine their implementations. The first iteration focuses on core functionality, with subsequent iterations addressing feedback, bug fixes, and feature enhancements. Each iteration is saved as `index-N.html` where N is the iteration number.
+This comparison uses an **iterative development approach** where each model will go through multiple iterations to refine their implementations:
+
+- **Iteration 1**: Core functionality implementation from PRD specifications. No human feedback will be given from this iteration.
+- **Iteration 2**: Image analysis enhancement - models analyze a screenshot of their iteration 1 result and create improvements
+- **Future Iterations**: Additional refinements based on specific feedback or feature requests
+
+Each iteration is saved as `index-N.html` in its folder where N is the iteration number.
 
 ### 🎯 Application Features
 
-The Stop Smoking Motivator is a privacy-first web app that helps recent quitters stay motivated by showing:
+The Stop Smoking Motivator is a web app that helps recent quitters stay motivated by showing:
 
 - **Real-time Progress Tracking** - Live counters for time smoke-free, cigarettes avoided, and money saved
 - **Health Benefits Timeline** - 21 physiological milestones with progress visualization
 - **Motivational Content** - Rotating inspirational quotes and achievement celebrations
-- **Share Functionality** - URL-based progress sharing with no server requirements
 - **Multi-currency Support** - Thailand (฿) and USA ($) pricing
 
 ### 🤖 Models Under Comparison
 
-| Model | Version | Provider | Status |
-|-------|---------|----------|---------|
-| **o3** | Latest | OpenAI | 🔄 Iteration 1 Complete |
-| **Claude Sonnet** | 4.0 | Anthropic | 🔄 Iteration 1 Complete |
-| **Gemini** | 2.5 Pro | Google | � Ready for Iteration 1 |
+| Model | Version | Provider | Iteration 1 | Iteration 2 |
+|-------|---------|----------|-------------|-------------|
+| **o3** | Latest | OpenAI | ✅ Complete | ✅ Complete |
+| **Claude Sonnet** | 4.0 | Anthropic | ✅ Complete | ✅ Complete |
+| **Gemini** | 2.5 Pro | Google | ✅ Complete | ✅ Complete |
 
 ## 📊 Implementation Tracking
 
@@ -34,22 +39,13 @@ The Stop Smoking Motivator is a privacy-first web app that helps recent quitters
 
 | Model | Iteration | Status | Key Achievements | Issues/Gaps | Overall Score |
 |-------|-----------|--------|------------------|-------------|---------------|
-| **o3** | 1 | | | | /10 |
-| **Claude Sonnet 4.0** | 1 | | | | /10 |
-| **Gemini 2.5 Pro** | 1 | | | | /10 |
-
-*Note: Scores will be updated as implementations are completed and tested.*
+| **o3** | 2 | ✅ Complete | Fixed missing Edit button autonomously, slight improvements in several fields | | 4/10 |
+| **Claude Sonnet 4.0** | 2 | ✅ Complete | Improvements in several fields | | 8/10 |
+| **Gemini 2.5 Pro** | 2 | ✅ Complete | Big improvements, autonomously discovered timeline should be vertical | | 9/10 |
 
 ### Evaluation Criteria
 
-Each implementation will be scored (1-10) across these dimensions:
-
-- **Functionality** - Core features working as specified
-- **Design Adherence** - Following PRD design guidelines
-- **Code Quality** - Clean, maintainable, well-structured code
-- **Performance** - Loading speed and responsiveness
-- **Accessibility** - WCAG compliance and usability
-- **Innovation** - Creative improvements beyond requirements
+Each implementation will be scored (1-10) based on overall subjective assessment of quality, functionality, and user experience.
 
 ## 📁 File Structure
 
@@ -57,12 +53,17 @@ Each implementation will be scored (1-10) across these dimensions:
 stop-smoking-calc/
 ├── README.md              # This comparison document
 ├── PRD.md                 # Product Requirements Document
+├── prompt-1.txt           # Initial implementation prompt
+├── prompt-2.txt           # Image analysis iteration prompt
 ├── o3/
-│   └── index-1.html       # OpenAI o3 implementation (Iteration 1)
+│   ├── index-1.html       # OpenAI o3 implementation (Iteration 1)
+│   └── index-2.html       # OpenAI o3 implementation (Iteration 2)
 ├── sonnet4/
-│   └── index-1.html       # Claude Sonnet 4.0 implementation (Iteration 1)
+│   ├── index-1.html       # Claude Sonnet 4.0 implementation (Iteration 1)
+│   └── index-2.html       # Claude Sonnet 4.0 implementation (Iteration 2)
 └── gemini/
-    └── index-1.html       # Gemini 2.5 Pro implementation (Iteration 1)
+    ├── index-1.html       # Gemini 2.5 Pro implementation (Iteration 1)
+    └── index-2.html       # Gemini 2.5 Pro implementation (Iteration 2)
 ```
 
 ## 🎨 Technical Requirements
@@ -76,19 +77,6 @@ Based on the PRD, each implementation must:
 - **Performance** - First Contentful Paint < 0.5s on 3G Fast
 - **Privacy First** - No external network requests (optional analytics)
 
-### Core Features Checklist
-
-- [ ] Quit data input (days, hours, cigarettes/day)
-- [ ] Country selector (Thailand 🇹🇭 / USA 🇺🇸)
-- [ ] Real-time progress engine with live counters
-- [ ] 21-milestone health benefits timeline
-- [ ] Motivational quote rotation
-- [ ] Share functionality with URL encoding
-- [ ] Modal details for milestone information
-- [ ] Responsive design (mobile-first)
-- [ ] Data persistence (localStorage)
-- [ ] Accessibility features
-
 ## 🚀 Getting Started
 
 ### Testing an Implementation
@@ -98,43 +86,27 @@ Based on the PRD, each implementation must:
 3. Enter your quit data and explore the features
 4. Test sharing functionality and responsive design
 
-### Evaluation Process
+## 🔍 Image Analysis Methodology (Iteration 2)
 
-1. **Functional Testing** - Verify all features work as specified
-2. **Design Review** - Compare visual design against PRD guidelines
-3. **Code Analysis** - Review code structure, quality, and maintainability
-4. **Performance Testing** - Measure loading times and responsiveness
-5. **Accessibility Audit** - Test with screen readers and keyboard navigation
+Iteration 2 introduces a unique testing approach to evaluate each model's **visual analysis capabilities**:
 
-## 📈 Results Summary
+### Process Overview
+1. **Screenshot Capture** - Each model's iteration 1 implementation is manually tested in Chrome and screenshotted
+2. **Visual Analysis Prompt** - The same `prompt-2.txt` is used for all models along with their respective screenshot
+3. **Enhancement Implementation** - Models must analyze their visual output and create improved `index-2.html` versions
 
-*This section will be updated as implementations are completed and evaluated.*
-
-### Performance Metrics
-
-| Metric | o3 | Sonnet 4.0 | Gemini 2.5 Pro |
-|--------|----|-----------|----|
-| **File Size** | - | ~25KB | - |
-| **Load Time** | - | - | - |
-| **Lighthouse Score** | - | - | - |
-| **Features Complete** | -/12 | -/12 | -/12 |
-
-### Notable Differences
-
-*To be filled as analysis progresses...*
-
-## 🎯 Key Insights
-
-*Analysis and conclusions will be added here after completing all implementations.*
+### What This Tests
+- **Visual Design Understanding** - Can models assess UI/UX quality from screenshots?
+- **Self-Assessment** - How well can models critique their own work?
+- **Design Improvement** - Can models translate visual observations into code improvements?
+- **Image-to-Code Translation** - Testing multimodal capabilities in practical coding scenarios
 
 ## 📝 Notes
 
-- All implementations use the same PRD as input
-- No additional guidance or corrections provided to models
-- Focus on "vibe-coding" - how well models interpret and implement requirements
-- Emphasis on single-turn completeness rather than iterative refinement
+- **Iteration 1** uses the same PRD as input for all models
+- **Iteration 2** uses the same prompt for all models + model-specific screenshot as input
 
 ---
 
 **Last Updated:** [Current Date]  
-**Status:** Iteration 1 - 2/3 Models Complete
+**Status:** Iteration 1 Complete (3/3 Models) | Iteration 2 Complete (3/3 Models)

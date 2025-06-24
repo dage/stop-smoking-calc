@@ -1,0 +1,37 @@
+# Stop Smoking Motivator - Iteration 2: PRD Compliance & Bug Fixes
+
+## Task Overview
+Analyze the provided screenshot of your iteration 1 implementation and create an improved `index-2.html` that better matches the PRD specifications.
+
+## Your Task (in order):
+
+### a.) Analyze the Screenshot
+- Compare what you see in the screenshot against the PRD requirements
+- Identify missing features, incorrect implementations, or visual bugs
+- Note any deviations from the specified design guidelines
+
+### b.) Fix PRD Differences
+Review the PRD and ensure your iteration 2 includes:
+- **Quit Data Input**: Days/hours fields, country selector (🇹🇭/🇺🇸), pack price auto-fill
+- **Live Stats Widget**: Large monospace counters (⏳ time, 🚭 cigarettes avoided, 💰 money saved)
+- **Benefits Timeline**: 21 milestone cards with proper states (completed/in-progress/upcoming)
+- **Share Functionality**: URL hash serialization for all input data
+- **Design Guidelines**: Correct colors (#f2f4f6 bg, #ff6b6b accent, #2ecc71 success), card styling, system fonts
+
+### c.) Fix Visual & Technical Bugs
+- Ensure mobile responsiveness (mobile-first design)
+- Fix any layout issues, broken counters, or missing functionality
+- Improve accessibility and usability based on what you observe
+- Ensure localStorage persistence works properly
+
+### d.) Produce index-2.html
+Create a complete, self-contained HTML file that:
+- Maintains all working functionality from iteration 1
+- Fixes identified PRD compliance issues
+- Resolves any visual or technical bugs
+- Works offline as a single file with no external dependencies
+
+## Success Criteria
+Your iteration 2 should demonstrate closer adherence to the PRD specifications while maintaining or improving the user experience from iteration 1.
+
+Start by describing what you observe in the screenshot compared to the PRD, then provide your complete `index-2.html` implementation.
