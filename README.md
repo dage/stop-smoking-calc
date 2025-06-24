@@ -6,6 +6,10 @@ A comprehensive comparison of three leading AI models implementing a single-page
 
 This project evaluates the coding capabilities of three state-of-the-art AI models by having them implement the same web application: a **Stop Smoking Motivator**. Each model receives the same PRD and is tasked with creating a self-contained, single-page HTML application.
 
+### 🔄 Iterative Approach
+
+This comparison uses an **iterative development approach** where each model will go through multiple iterations to refine their implementations. The first iteration focuses on core functionality, with subsequent iterations addressing feedback, bug fixes, and feature enhancements. Each iteration is saved as `index-N.html` where N is the iteration number.
+
 ### 🎯 Application Features
 
 The Stop Smoking Motivator is a privacy-first web app that helps recent quitters stay motivated by showing:
@@ -20,9 +24,9 @@ The Stop Smoking Motivator is a privacy-first web app that helps recent quitters
 
 | Model | Version | Provider | Status |
 |-------|---------|----------|---------|
-| **o3** | Latest | OpenAI | ✅ Complete |
-| **Claude Sonnet** | 4.0 | Anthropic | ✅ Complete |
-| **Gemini** | 2.5 Pro | Google | 🔄 In Progress |
+| **o3** | Latest | OpenAI | 🔄 Iteration 1 Complete |
+| **Claude Sonnet** | 4.0 | Anthropic | 🔄 Iteration 1 Complete |
+| **Gemini** | 2.5 Pro | Google | � Ready for Iteration 1 |
 
 ## 📊 Implementation Tracking
 
@@ -54,11 +58,11 @@ stop-smoking-calc/
 ├── README.md              # This comparison document
 ├── PRD.md                 # Product Requirements Document
 ├── o3/
-│   └── index.html         # OpenAI o3 implementation
+│   └── index-1.html       # OpenAI o3 implementation (Iteration 1)
 ├── sonnet4/
-│   └── index.html         # Claude Sonnet 4.0 implementation
+│   └── index-1.html       # Claude Sonnet 4.0 implementation (Iteration 1)
 └── gemini/
-    └── index.html         # Gemini 2.5 Pro implementation (coming soon)
+    └── index-1.html       # Gemini 2.5 Pro implementation (Iteration 1)
 ```
 
 ## 🎨 Technical Requirements
@@ -90,7 +94,7 @@ Based on the PRD, each implementation must:
 ### Testing an Implementation
 
 1. Navigate to the desired model's folder (e.g., `o3/`, `sonnet4/`, `gemini/`)
-2. Open `index.html` in your web browser
+2. Open `index-1.html` (or the desired iteration) in your web browser
 3. Enter your quit data and explore the features
 4. Test sharing functionality and responsive design
 
@@ -133,4 +137,4 @@ Based on the PRD, each implementation must:
 ---
 
 **Last Updated:** [Current Date]  
-**Status:** 2/3 Models Complete
+**Status:** Iteration 1 - 2/3 Models Complete
