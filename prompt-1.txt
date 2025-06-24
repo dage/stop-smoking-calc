@@ -1,0 +1,3 @@
+Implement the stop-smoking-calc accordingy to this Product Requirement Document (PRD.md attached).
+
+Do your changes in .....
