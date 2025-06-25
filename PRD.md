@@ -1,4 +1,4 @@
-Stop Smoking Motivator — Product Requirements Document (v0.2)
+Stop Smoking Motivator — Product Requirements Document (v0.3)
 
 1. Purpose
 
@@ -64,19 +64,9 @@ Copy‑to‑clipboard permalink serialises all input as URL hash (/#d=2&h=14&c=2
 
 Smaller, low‑contrast footer text: “Not medical advice. For information only.” Stealthed at font‑size: 0.75rem; opacity: .55;.
 
-5. Non‑Goals (v1)
-	•	Push notifications
-	•	Server‑side accounts or cloud sync
-	•	Multi‑language UI (roadmap v2)
+5. Data Content & Model
 
-6. User Stories
-	1.	As a quitter, I enter days & hours and immediately see my progress and money saved.
-	2.	As a quitter, I refresh tomorrow and the app remembers my data without login.
-	3.	As a supporter, I share the page with a timestamp pre‑filled for a friend.
-
-7. Data Content & Model
-
-7.1 Milestone Catalogue (v1 draft — 21 entries)
+5.1 Milestone Catalogue (v1 draft — 21 entries)
 
 Offset (h)	Label	Key Benefits (short)
 0	Now	Pulse & BP drop • temp of hands/feet rises
@@ -103,7 +93,7 @@ Offset (h)	Label	Key Benefits (short)
 
 Full benefit blurbs (1–3 sentences each) stored in milestoneDetails[]; sourced from WHO, CDC, NHS, Mayo Clinic. Each record also stores citationId[] for tooltip references.
 
-7.2 Data Model
+5.2 Data Model
 
 Key	Description	Example
 quitEpoch	Unix epoch ms of last cigarette	1720898400000
@@ -121,7 +111,7 @@ milestones[]	Array of objects {hours,label,benefit}	{48,"48 h","CO normalises"
 
 Milestone source curation (internal TODO): compile from WHO, CDC, NHS, Mayo Clinic; cite each benefit in code comments.
 
-8. Technical Requirements
+6. Technical Requirements
 	•	Architecture: one index.html with inline <style> (≤ 8 KB gzipped) & ES6 <script type="module"> (≤ 15 KB gzipped).
 	•	Dependencies: none. Optional CDN dayjs if code size grows.
 	•	Performance: First Contentful Paint < 0.5 s on 3G Fast.
@@ -129,7 +119,7 @@ Milestone source curation (internal TODO): compile from WHO, CDC, NHS, Mayo Clin
 	•	Responsive: Mobile‑first flexbox; grid on ≥ 768 px.
 	•	Testing: Manual checklist; npm tooling out‑of‑scope until v1.1.
 
-9. Design Guidelines
+7. Design Guidelines
 	•	Palette (minimal modern):
 	•	Background: #f2f4f6 (very light gray)
 	•	Primary accent: #ff6b6b (coral)
@@ -138,26 +128,3 @@ Milestone source curation (internal TODO): compile from WHO, CDC, NHS, Mayo Clin
 	•	Soft cards (box‑shadow: 0 1px 4px rgba(0,0,0,.05)), rounded corners (6 px).
 	•	Micro‑animations: fadeInUp 200 ms ease‑out on card load.
 	•	Font: system stack with font‑feature‑settings: "tnum" for counters.
-
-10. Privacy & Analytics
-
-No network requests except optional Plausible script if owner appends ?stats=1.
-
-11. Deployment & Hosting
-	1.	Commit index.html to GitHub repo.
-	2.	Enable GitHub Pages (branch main, root).
-	3.	Verify at https://<user>.github.io/quit‑calc/.
-
-12. Roadmap
-
-Release	Features
-v1 (MVP)	Core flow, timeline, live stats, money counter
-v1.1	PWA manifest + offline cache
-v2	Multi‑language (EN, TH, NO) + configurable milestones
-v3	Web‑push “milestone achieved!” notifications
-
-13. Outstanding Tasks (not blockers)
-	1.	Milestone copy – write extended 1–3 sentence blurbs per milestone and attach citations.
-	2.	Citation Tooltip Module – tiny JS for (i) icon hover showing source list.
-	3.	Flag SVGs – inline sprites for 🇹🇭 and 🇺🇸.
-	4.	Pack price source update – update USA default if national average shifts (current $8).
