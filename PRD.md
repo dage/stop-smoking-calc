@@ -66,27 +66,32 @@ Smaller, low‑contrast footer text: “Not medical advice. For information only
 
 5. Data Content & Model
 
-5.1 Milestone Catalogue (v1 draft — 21 entries)
+5.1 Milestone Catalogue (v1.1 — 26 entries)
 
-Offset (h)	Label	Key Benefits (short)
-0	Now	Pulse & BP drop • temp of hands/feet rises
-4	4 h	CO in blood ↓ 50 %
-8	8 h	O₂ in blood ↗ to normal
-12	12 h	Cough reflex starts to improve
-24	24 h	Heart-attack risk begins ↓
-36	36 h	Taste & smell noticeably sharper
-48	48 h	CO gone • nerve endings regrow
-60	2.5 d	Nicotine eliminated
-72	3 d	Bronchi relax • breathing easier
-96	4 d	Energy levels increase
-168	1 w	Sense of smell fully restored
-336	2 w	Circulation improves • walking easier
+Offset (h)	Label	Key benefits (short)
+0	Now	Body starts repair • pulse & BP begin to fall  ￼
+0.33	20 m	HR & BP back to normal • hands/feet warm up  ￼
+2	2 h	Blood-nicotine ↓ ~50 % (≈ half-life)  ￼
+4	4 h	CO in blood ↓ 50 % • O₂ rising  ￼
+6	6 h	HR slows further • BP stabilises  ￼
+8	8 h	O₂ back to normal • most nicotine cleared  ￼ ￼
+12	12 h	CO level = non-smoker • organs get full O₂  ￼
+24	24 h	Heart-attack risk begins to fall  ￼
+36	36 h	Taste & smell start sharpening  ￼
+48	48 h	All CO gone • nerve endings regrow • taste & smell improving further  ￼
+60	2.5 d	Body nicotine-free  ￼
+72	3 d	Bronchi relax • breathing easier  ￼
+96	4 d	Energy levels noticeably higher  ￼
+120	5 d	Collagen renewal kicks in • skin looks brighter  ￼
+168	1 w	Sense of smell fully restored • breathing steadier  ￼
+240	10 d	More energy & easier breathing reported by most quitters  ￼
+336	2 w	Circulation improves • walking feels easier  ￼
 720	1 m	Lung function +10 %
 1440	2 m	Exercise endurance up
-2160	3 m	Airway cilia regrow • chest clear
-4320	6 m	Coughing/wheezing cut by 50 %
+2160	3 m	Airway cilia regrow • chest clearer
+4320	6 m	Coughing / wheezing cut by ≈50 %
 8760	1 y	CHD risk −50 %
-26280	3 y	Heart attack risk = non-smoker
+26280	3 y	Heart-attack risk ≈ non-smoker
 43800	5 y	Stroke risk = non-smoker
 87600	10 y	Lung-cancer death risk −50 %
 157680	18 y	CHD risk ≈ never-smoker
