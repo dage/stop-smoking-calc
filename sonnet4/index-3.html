@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚭 Stop Smoking Motivator v2.0</title>
+    <style>
+        /* sonnet4/index-3.html */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #f2f4f6;
+            color: #1a1a1a;
+            line-height: 1.6;
+            padding: 16px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .header h1 {
+            font-size: 2.25rem;
+            margin-bottom: 8px;
+            color: #ff6b6b;
+            font-weight: 700;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .input-section {
+            background: white;
+            padding: 24px;
+            border-radius: 6px;
+            box-shadow: 0 1px 4px rgba(0,0,0,.05);
+            margin-bottom: 24px;
+        }
+
+        .input-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .input-field {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-field label {
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #1a1a1a;
+            font-size: 0.9rem;
+        }
+
+        .input-field input {
+            padding: 12px;
+            border: 2px solid #e1e5e9;
+            border-radius: 6px;
+            font-size: 16px;
+            font-feature-settings: "tnum";
+            transition: border-color 0.2s ease;
+        }
+
+        .input-field input:focus {
+            outline: none;
+            border-color: #ff6b6b;
+        }
+
+        .country-selector {
+            margin-bottom: 20px;
+        }
+
+        .country-selector label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: block;
+            color: #1a1a1a;
+            font-size: 0.9rem;
+        }
+
+        .country-options {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .country-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .country-option input[type="radio"] {
+            margin: 0;
+            transform: scale(1.1);
+        }
+
+        .share-section {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .share-btn {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .share-btn:hover {
+            background: #e55a5a;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+        }
+
+        .stats-widget {
+            background: white;
+            padding: 32px 24px;
+            border-radius: 6px;
+            box-shadow: 0 1px 4px rgba(0,0,0,.05);
+            margin-bottom: 24px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 16px;
+            border-radius: 6px;
+            background: rgba(46, 204, 113, 0.05);
+            border: 1px solid rgba(46, 204, 113, 0.1);
+        }
+
+        .stat-value {
+            font-size: 1.75rem;
+            font-weight: 700;
+            font-feature-settings: "tnum";
+            color: #2ecc71;
+            display: block;
+            margin-bottom: 4px;
+            line-height: 1.2;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* Cigarette Visualization Widget */
+        .visualization-widget {
+            background: white;
+            padding: 24px;
+            border-radius: 6px;
+            box-shadow: 0 1px 4px rgba(0,0,0,.05);
+            margin-bottom: 24px;
+        }
+
+        .visualization-widget h3 {
+            text-align: center;
+            color: #ff6b6b;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+        }
+
+        .visualization-container {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 20px;
+            min-height: 200px;
+            padding: 20px;
+        }
+
+        .human-figure {
+            flex-shrink: 0;
+        }
+
+        .pack-stacks {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 2px;
+        }
+
+        .pack-row {
+            display: flex;
+            gap: 2px;
+        }
+
+        .cigarette-pack {
+            width: 24px;
+            height: 8px;
+            background: linear-gradient(90deg, #8B4513 0%, #A0522D 50%, #8B4513 100%);
+            border: 1px solid #654321;
+            border-radius: 1px;
+            position: relative;
+        }
+
+        .pack-saved {
+            background: linear-gradient(90deg, #2ecc71 0%, #27ae60 50%, #2ecc71 100%);
+            border-color: #229954;
+        }
+
+        .pack-info {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .motivation-quote {
+            background: white;
+            padding: 24px;
+            border-radius: 6px;
+            box-shadow: 0 1px 4px rgba(0,0,0,.05);
+            text-align: center;
+            margin-bottom: 24px;
+            border-left: 4px solid #ff6b6b;
+        }
+
+        .motivation-quote p {
+            font-style: italic;
+            font-size: 1.1rem;
+            color: #444;
+            line-height: 1.5;
+        }
+
+        /* Enhanced Timeline - Always Vertical */
+        .timeline {
+            margin-bottom: 32px;
+        }
+
+        .timeline h2 {
+            text-align: center;
+            margin-bottom: 24px;
+            color: #ff6b6b;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .timeline-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .milestone-card {
+            background: white;
+            padding: 16px 20px;
+            border-radius: 6px;
+            box-shadow: 0 1px 4px rgba(0,0,0,.05);
+            cursor: pointer;
+            transition: all 0.2s ease-out;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 300ms ease-out;
+        }
+
+        .milestone-card:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,0,0,.1);
+        }
+
+        .milestone-card.completed {
+            border-left: 4px solid #2ecc71;
+            background: linear-gradient(135deg, rgba(46, 204, 113, 0.05) 0%, white 100%);
+            opacity: 1;
+        }
+
+        .milestone-card.completed::before {
+            content: '✓';
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            background: #2ecc71;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .milestone-card.in-progress {
+            border-left: 4px solid #ff6b6b;
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.05) 0%, white 100%);
+            border: 2px solid #ff6b6b;
+            border-left: 4px solid #ff6b6b;
+        }
+
+        .milestone-card.current {
+            border-left: 4px solid #ff6b6b;
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.1) 0%, white 100%);
+            border: 2px solid #ff6b6b;
+            border-left: 4px solid #ff6b6b;
+            padding: 24px;
+        }
+
+        .milestone-card.upcoming {
+            border-left: 4px solid #e1e5e9;
+            opacity: 0.4;
+        }
+
+        .milestone-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .milestone-time {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #ff6b6b;
+        }
+
+        .milestone-card.completed .milestone-time {
+            color: #2ecc71;
+        }
+
+        .milestone-benefit {
+            color: #1a1a1a;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .milestone-detail {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #e1e5e9;
+        }
+
+        .milestone-citations {
+            font-size: 0.8rem;
+            color: #999;
+            margin-top: 8px;
+            font-style: italic;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: #e1e5e9;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 12px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff6b6b, #ff8a8a);
+            transition: width 0.5s ease-out;
+            border-radius: 3px;
+        }
+
+        .progress-percentage {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 4px;
+            text-align: right;
+        }
+
+        .disclaimer {
+            text-align: center;
+            font-size: 0.75rem;
+            opacity: 0.55;
+            margin-top: 32px;
+            color: #666;
+            padding: 16px;
+        }
+
+        .copy-feedback {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #2ecc71;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            z-index: 1001;
+            animation: slideInRight 300ms ease-out;
+            box-shadow: 0 4px 12px rgba(46, 204, 113, 0.3);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 8px;
+            }
+            
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .input-row {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            
+            .country-options {
+                flex-direction: column;
+                gap: 12px;
+            }
+            
+            .stats-widget {
+                grid-template-columns: 1fr;
+                gap: 16px;
+                padding: 24px 16px;
+            }
+            
+            .stat-value {
+                font-size: 1.5rem;
+            }
+            
+            .visualization-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+                min-height: 150px;
+            }
+            
+            .pack-stacks {
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 8px;
+            }
+            
+            .header h1 {
+                font-size: 1.6rem;
+            }
+            
+            .input-section,
+            .stats-widget,
+            .motivation-quote,
+            .visualization-widget {
+                padding: 16px;
+            }
+            
+            .milestone-card {
+                padding: 12px 16px;
+            }
+            
+            .milestone-card.current {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🚭 Stop Smoking Motivator v2.0</h1>
+            <p>Track your progress and see the amazing benefits of quitting smoking</p>
+        </header>
+
+        <section class="input-section">
+            <div class="input-row">
+                <div class="input-field">
+                    <label for="days">Days since last cigarette:</label>
+                    <input type="number" id="days" min="0" value="0">
+                </div>
+                <div class="input-field">
+                    <label for="hours">Hours since last cigarette:</label>
+                    <input type="number" id="hours" min="0" max="23" value="0">
+                </div>
+                <div class="input-field">
+                    <label for="avgCigs">Average cigarettes per day:</label>
+                    <input type="number" id="avgCigs" min="1" value="20">
+                </div>
+            </div>
+
+            <div class="country-selector">
+                <label>Country:</label>
+                <div class="country-options">
+                    <div class="country-option">
+                        <input type="radio" id="thailand" name="country" value="th" checked>
+                        <label for="thailand">🇹🇭 Thailand</label>
+                    </div>
+                    <div class="country-option">
+                        <input type="radio" id="usa" name="country" value="us">
+                        <label for="usa">🇺🇸 USA</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-field">
+                <label for="packPrice">Pack price:</label>
+                <input type="number" id="packPrice" min="0" step="0.01" value="70">
+            </div>
+        </section>
+
+        <section class="share-section">
+            <button class="share-btn" onclick="shareProgress()">📋 Share Progress</button>
+        </section>
+
+        <section class="stats-widget" aria-live="polite">
+            <div class="stat-item">
+                <span class="stat-value" id="timeElapsed">⏳ 0 days 0 h 0 m</span>
+                <div class="stat-label">Time smoke-free</div>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value" id="cigsAvoided">🚭 0 cigarettes avoided</span>
+                <div class="stat-label">Cigarettes not smoked</div>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value" id="moneySaved">💰 ฿ 0 saved</span>
+                <div class="stat-label">Money saved</div>
+            </div>
+        </section>
+
+        <section class="visualization-widget">
+            <h3>Cigarettes Not Smoked Visualization</h3>
+            <div class="visualization-container">
+                <div class="human-figure">
+                    <svg width="40" height="100" viewBox="0 0 40 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Human figure SVG -->
+                        <circle cx="20" cy="15" r="8" fill="#ff6b6b" stroke="#333" stroke-width="1"/>
+                        <rect x="15" y="23" width="10" height="35" rx="2" fill="#ff6b6b" stroke="#333" stroke-width="1"/>
+                        <rect x="8" y="25" width="15" height="4" rx="2" fill="#ff6b6b" stroke="#333" stroke-width="1"/>
+                        <rect x="25" y="25" width="15" height="4" rx="2" fill="#ff6b6b" stroke="#333" stroke-width="1"/>
+                        <rect x="17" y="58" width="3" height="25" rx="1" fill="#ff6b6b" stroke="#333" stroke-width="1"/>
+                        <rect x="22" y="58" width="3" height="25" rx="1" fill="#ff6b6b" stroke="#333" stroke-width="1"/>
+                        <ellipse cx="18" cy="88" rx="4" ry="2" fill="#333"/>
+                        <ellipse cx="23" cy="88" rx="4" ry="2" fill="#333"/>
+                    </svg>
+                    <div style="text-align: center; font-size: 0.8rem; color: #666; margin-top: 5px;">170cm</div>
+                </div>
+                <div class="pack-stacks" id="packStacks">
+                    <!-- Cigarette packs will be generated here -->
+                </div>
+            </div>
+            <div class="pack-info" id="packInfo">
+                0 packs not smoked (0 cigarettes)
+            </div>
+        </section>
+
+        <section class="motivation-quote">
+            <p id="motivationText"></p>
+        </section>
+
+        <section class="timeline">
+            <h2>Your Health Timeline</h2>
+            <div class="timeline-container" id="timelineContainer">
+                <!-- Timeline cards will be generated here -->
+            </div>
+        </section>
+
+        <div class="disclaimer">
+            Not medical advice. For information only.
+        </div>
+    </div>
+
+    <script type="module">
+        // Complete v1.1 milestone data (26 entries)
+        const milestones = [
+            {
+                hours: 0,
+                label: "Now",
+                benefit: "Body starts repair • pulse & BP begin to fall",
+                detailDescription: "Within minutes of your last cigarette, your heart rate and blood pressure begin to normalize. Your body immediately starts the healing process.",
+                citations: ["WHO", "CDC"],
+                visualPriority: true
+            },
+            {
+                hours: 0.33,
+                label: "20 m",
+                benefit: "HR & BP back to normal • hands/feet warm up",
+                detailDescription: "Your heart rate and blood pressure have returned to normal ranges. Circulation improves and your hands and feet feel warmer.",
+                citations: ["CDC", "Mayo Clinic"]
+            },
+            {
+                hours: 2,
+                label: "2 h",
+                benefit: "Blood-nicotine ↓ ~50% (≈ half-life)",
+                detailDescription: "Nicotine levels in your blood have dropped by approximately 50%. Your body is rapidly processing and eliminating the remaining nicotine.",
+                citations: ["NHS", "CDC"]
+            },
+            {
+                hours: 4,
+                label: "4 h",
+                benefit: "CO in blood ↓ 50% • O₂ rising",
+                detailDescription: "Carbon monoxide levels in your blood have dropped by half. Your blood can now carry more oxygen to your organs and tissues.",
+                citations: ["CDC", "WHO"]
+            },
+            {
+                hours: 6,
+                label: "6 h",
+                benefit: "HR slows further • BP stabilises",
+                detailDescription: "Your heart rate continues to slow down and your blood pressure stabilizes at healthier levels. Your cardiovascular system is adapting to life without nicotine.",
+                citations: ["Mayo Clinic", "NHS"]
+            },
+            {
+                hours: 8,
+                label: "8 h",
+                benefit: "O₂ back to normal • most nicotine cleared",
+                detailDescription: "Oxygen levels in your blood have returned to normal ranges. Most nicotine has been cleared from your system.",
+                citations: ["WHO", "CDC"]
+            },
+            {
+                hours: 12,
+                label: "12 h",
+                benefit: "CO level = non-smoker • organs get full O₂",
+                detailDescription: "Carbon monoxide levels have dropped to those of a non-smoker. Your organs are now receiving full oxygen supply.",
+                citations: ["CDC", "NHS"]
+            },
+            {
+                hours: 24,
+                label: "24 h",
+                benefit: "Heart-attack risk begins to fall",
+                detailDescription: "Your risk of heart attack has already begun to decrease. This is just the beginning of major cardiovascular improvements.",
+                citations: ["WHO", "CDC"],
+                visualPriority: true
+            },
+            {
+                hours: 36,
+                label: "36 h",
+                benefit: "Taste & smell start sharpening",
+                detailDescription: "Your senses of taste and smell are becoming noticeably sharper as nerve endings begin to heal and regrow.",
+                citations: ["Mayo Clinic", "NHS"]
+            },
+            {
+                hours: 48,
+                label: "48 h",
+                benefit: "All CO gone • nerve endings regrow • taste & smell improving further",
+                detailDescription: "Carbon monoxide is completely eliminated from your body. Damaged nerve endings are starting to regrow, significantly improving taste and smell.",
+                citations: ["CDC", "WHO"],
+                visualPriority: true
+            },
+            {
+                hours: 60,
+                label: "2.5 d",
+                benefit: "Body nicotine-free",
+                detailDescription: "All nicotine has been eliminated from your body. The physical addiction is broken, though psychological habits may persist.",
+                citations: ["NHS", "Mayo Clinic"],
+                visualPriority: true
+            },
+            {
+                hours: 72,
+                label: "3 d",
+                benefit: "Bronchi relax • breathing easier",
+                detailDescription: "Your bronchial tubes are relaxing and opening up, making breathing easier. You may notice less shortness of breath during daily activities.",
+                citations: ["WHO", "CDC"],
+                visualPriority: true
+            },
+            {
+                hours: 96,
+                label: "4 d",
+                benefit: "Energy levels noticeably higher",
+                detailDescription: "Many people report significantly increased energy levels as their body adjusts to life without nicotine and circulation continues to improve.",
+                citations: ["Mayo Clinic", "NHS"]
+            },
+            {
+                hours: 120,
+                label: "5 d",
+                benefit: "Collagen renewal kicks in • skin looks brighter",
+                detailDescription: "Your body's collagen production is beginning to normalize, leading to brighter, healthier-looking skin. The healing process is well underway.",
+                citations: ["NHS", "CDC"]
+            },
+            {
+                hours: 168,
+                label: "1 w",
+                benefit: "Sense of smell fully restored • breathing steadier",
+                detailDescription: "Your sense of smell has likely returned to normal levels. Food tastes better and you're more sensitive to odors. Breathing is becoming steadier.",
+                citations: ["CDC", "WHO"],
+                visualPriority: true
+            },
+            {
+                hours: 240,
+                label: "10 d",
+                benefit: "More energy & easier breathing reported by most quitters",
+                detailDescription: "Most people report substantial improvements in energy levels and breathing capacity. Physical activities become noticeably easier.",
+                citations: ["Mayo Clinic", "NHS"]
+            },
+            {
+                hours: 336,
+                label: "2 w",
+                benefit: "Circulation improves • walking feels easier",
+                detailDescription: "Blood circulation has improved significantly. Walking and physical activity become easier as your heart and lungs work more efficiently.",
+                citations: ["NHS", "WHO"],
+                visualPriority: true
+            },
+            {
+                hours: 720,
+                label: "1 m",
+                benefit: "Lung function +10%",
+                detailDescription: "Your lung function has improved by up to 10%. Coughing and shortness of breath continue to decrease significantly.",
+                citations: ["WHO", "CDC"],
+                visualPriority: true
+            },
+            {
+                hours: 1440,
+                label: "2 m",
+                benefit: "Exercise endurance up",
+                detailDescription: "Your exercise endurance and overall physical performance have improved substantially as your cardiovascular system continues to heal.",
+                citations: ["Mayo Clinic", "NHS"]
+            },
+            {
+                hours: 2160,
+                label: "3 m",
+                benefit: "Airway cilia regrow • chest clear",
+                detailDescription: "The tiny hairs (cilia) in your airways have regrown and are functioning properly, helping to clear your chest and reduce infection risk.",
+                citations: ["CDC", "WHO"],
+                visualPriority: true
+            },
+            {
+                hours: 4320,
+                label: "6 m",
+                benefit: "Coughing/wheezing cut by ≈50%",
+                detailDescription: "Coughing and wheezing have decreased by about 50%. Your lungs are much more effective at cleaning themselves and fighting infections.",
+                citations: ["NHS", "Mayo Clinic"],
+                visualPriority: true
+            },
+            {
+                hours: 8760,
+                label: "1 y",
+                benefit: "CHD risk −50%",
+                detailDescription: "Your risk of coronary heart disease has dropped by 50% compared to when you were smoking. This is a major health milestone.",
+                citations: ["WHO", "CDC"],
+                visualPriority: true
+            },
+            {
+                hours: 26280,
+                label: "3 y",
+                benefit: "Heart-attack risk ≈ non-smoker",
+                detailDescription: "Your risk of heart attack is now similar to someone who has never smoked. Your cardiovascular system has largely healed from smoking damage.",
+                citations: ["CDC", "Mayo Clinic"],
+                visualPriority: true
+            },
+            {
+                hours: 43800,
+                label: "5 y",
+                benefit: "Stroke risk = non-smoker",
+                detailDescription: "Your risk of stroke has decreased to that of a non-smoker. Your blood vessels have healed significantly from smoking-related damage.",
+                citations: ["WHO", "NHS"],
+                visualPriority: true
+            },
+            {
+                hours: 87600,
+                label: "10 y",
+                benefit: "Lung-cancer death risk −50%",
+                detailDescription: "Your risk of dying from lung cancer has dropped by 50% compared to continuing smokers. Other cancer risks have also decreased substantially.",
+                citations: ["CDC", "WHO"],
+                visualPriority: true
+            },
+            {
+                hours: 157680,
+                label: "18 y",
+                benefit: "CHD risk ≈ never-smoker",
+                detailDescription: "Your risk of coronary heart disease is now nearly identical to someone who has never smoked. You've achieved maximum cardiovascular recovery.",
+                citations: ["Mayo Clinic", "CDC"],
+                visualPriority: true
+            }
+        ];
+
+        // Enhanced motivational quotes
+        const motivationalQuotes = [
+            "Your willpower is stronger than any addiction.",
+            "Every cigarette you don't smoke is a victory.",
+            "Your body is healing itself right now.",
+            "You're stronger than your cravings.",
+            "Each smoke-free day is an investment in your future.",
+            "Your lungs are thanking you every breath you take.",
+            "You've already overcome the hardest part.",
+            "Your family is proud of your commitment.",
+            "Every dollar saved is a reward for your willpower.",
+            "You're not just quitting smoking, you're choosing life.",
+            "Your taste buds are celebrating their freedom.",
+            "You're an inspiration to others who want to quit.",
+            "Your heart is getting stronger every day.",
+            "You're proving that you can overcome anything.",
+            "Your future self will thank you for this decision.",
+            "You're breaking free from addiction's chains.",
+            "Your energy levels are returning to normal.",
+            "You're setting a powerful example for your loved ones.",
+            "Every smoke-free moment is a step toward better health.",
+            "You're reclaiming control over your life.",
+            "Your commitment to health is admirable.",
+            "You're healing from the inside out.",
+            "You're choosing long-term happiness over short-term relief.",
+            "Your body is amazing at healing itself.",
+            "You're worth the effort it takes to stay smoke-free.",
+            "Your breathing is getting easier every day.",
+            "You're saving money and your health at the same time.",
+            "Your determination is your superpower.",
+            "You're creating new, healthier habits.",
+            "Your journey to better health has begun.",
+            "You are stronger than you think.",
+            "Progress, not perfection, is the goal."
+        ];
+
+        // Global state
+        let quitEpoch = null;
+        let updateInterval = null;
+
+        // Initialize app
+        function init() {
+            loadFromStorage();
+            loadFromURL();
+            setupEventListeners();
+            displayRandomQuote();
+            startUpdateLoop();
+        }
+
+        // Load data from localStorage
+        function loadFromStorage() {
+            const saved = localStorage.getItem('quitData');
+            if (saved) {
+                const data = JSON.parse(saved);
+                if (data.quitEpoch) quitEpoch = data.quitEpoch;
+                if (data.avgCigsPerDay) document.getElementById('avgCigs').value = data.avgCigsPerDay;
+                if (data.country) {
+                    document.querySelector(`input[value="${data.country}"]`).checked = true;
+                    updatePackPrice();
+                }
+                if (data.packPrice) document.getElementById('packPrice').value = data.packPrice;
+            }
+        }
+
+        // Load data from URL hash
+        function loadFromURL() {
+            const hash = window.location.hash.substring(1);
+            if (hash) {
+                const params = new URLSearchParams(hash);
+                const days = params.get('d');
+                const hours = params.get('h');
+                const cigs = params.get('c');
+                const country = params.get('ct');
+
+                if (days !== null) document.getElementById('days').value = days;
+                if (hours !== null) document.getElementById('hours').value = hours;
+                if (cigs !== null) document.getElementById('avgCigs').value = cigs;
+                if (country) {
+                    document.querySelector(`input[value="${country}"]`).checked = true;
+                    updatePackPrice();
+                }
+                
+                updateQuitTime();
+            }
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            document.getElementById('days').addEventListener('input', updateQuitTime);
+            document.getElementById('hours').addEventListener('input', updateQuitTime);
+            document.getElementById('avgCigs').addEventListener('input', saveToStorage);
+            document.getElementById('packPrice').addEventListener('input', saveToStorage);
+            
+            document.querySelectorAll('input[name="country"]').forEach(radio => {
+                radio.addEventListener('change', () => {
+                    updatePackPrice();
+                    saveToStorage();
+                });
+            });
+        }
+
+        // Update quit time based on input
+        function updateQuitTime() {
+            const days = parseInt(document.getElementById('days').value) || 0;
+            const hours = parseInt(document.getElementById('hours').value) || 0;
+            
+            const totalHours = days * 24 + hours;
+            quitEpoch = Date.now() - (totalHours * 60 * 60 * 1000);
+            
+            saveToStorage();
+            updateDisplay();
+        }
+
+        // Update pack price based on country
+        function updatePackPrice() {
+            const country = document.querySelector('input[name="country"]:checked').value;
+            const packPriceInput = document.getElementById('packPrice');
+            
+            if (country === 'th') {
+                packPriceInput.value = '70';
+            } else {
+                packPriceInput.value = '8';
+            }
+        }
+
+        // Save data to localStorage
+        function saveToStorage() {
+            const data = {
+                quitEpoch: quitEpoch,
+                avgCigsPerDay: document.getElementById('avgCigs').value,
+                country: document.querySelector('input[name="country"]:checked').value,
+                packPrice: document.getElementById('packPrice').value
+            };
+            localStorage.setItem('quitData', JSON.stringify(data));
+        }
+
+        // Display random motivational quote
+        function displayRandomQuote() {
+            const randomQuote = motivationalQuotes[Math.floor(Math.random() * motivationalQuotes.length)];
+            document.getElementById('motivationText').textContent = `"${randomQuote}"`;
+        }
+
+        // Start the update loop
+        function startUpdateLoop() {
+            updateDisplay();
+            updateInterval = setInterval(updateDisplay, 1000);
+        }
+
+        // Main update function
+        function updateDisplay() {
+            if (!quitEpoch) {
+                updateQuitTime();
+                return;
+            }
+
+            const now = Date.now();
+            const elapsedMs = now - quitEpoch;
+            const elapsedHours = elapsedMs / (1000 * 60 * 60);
+
+            updateTimeDisplay(elapsedMs);
+            updateStatsDisplay(elapsedHours);
+            updateVisualization(elapsedHours);
+            updateTimeline(elapsedHours);
+        }
+
+        // Update time elapsed display
+        function updateTimeDisplay(elapsedMs) {
+            const totalMinutes = Math.floor(elapsedMs / (1000 * 60));
+            const days = Math.floor(totalMinutes / (24 * 60));
+            const hours = Math.floor((totalMinutes % (24 * 60)) / 60);
+            const minutes = totalMinutes % 60;
+
+            document.getElementById('timeElapsed').textContent = `⏳ ${days} days ${hours} h ${minutes} m`;
+        }
+
+        // Update stats display
+        function updateStatsDisplay(elapsedHours) {
+            const avgCigsPerDay = parseFloat(document.getElementById('avgCigs').value) || 20;
+            const packPrice = parseFloat(document.getElementById('packPrice').value) || 70;
+            const country = document.querySelector('input[name="country"]:checked').value;
+
+            const cigsAvoided = Math.floor(elapsedHours * avgCigsPerDay / 24);
+            const pricePerCig = packPrice / 20;
+            const moneySaved = cigsAvoided * pricePerCig;
+
+            document.getElementById('cigsAvoided').textContent = `🚭 ${cigsAvoided} cigarettes avoided`;
+            
+            const currencySymbol = country === 'th' ? '฿' : '$';
+            document.getElementById('moneySaved').textContent = `💰 ${currencySymbol} ${Math.round(moneySaved)} saved`;
+        }
+
+        // Update cigarette visualization
+        function updateVisualization(elapsedHours) {
+            const avgCigsPerDay = parseFloat(document.getElementById('avgCigs').value) || 20;
+            const cigsAvoided = Math.floor(elapsedHours * avgCigsPerDay / 24);
+            const packsNotSmoked = Math.floor(cigsAvoided / 20);
+            
+            const container = document.getElementById('packStacks');
+            const info = document.getElementById('packInfo');
+            
+            container.innerHTML = '';
+            
+            if (packsNotSmoked > 0) {
+                const maxPacksPerRow = Math.min(10, Math.max(1, Math.floor(packsNotSmoked / 3) + 1));
+                const rows = Math.ceil(packsNotSmoked / maxPacksPerRow);
+                
+                for (let row = 0; row < rows; row++) {
+                    const rowDiv = document.createElement('div');
+                    rowDiv.className = 'pack-row';
+                    
+                    const packsInThisRow = Math.min(maxPacksPerRow, packsNotSmoked - (row * maxPacksPerRow));
+                    
+                    for (let pack = 0; pack < packsInThisRow; pack++) {
+                        const packDiv = document.createElement('div');
+                        packDiv.className = 'cigarette-pack pack-saved';
+                        rowDiv.appendChild(packDiv);
+                    }
+                    
+                    container.appendChild(rowDiv);
+                }
+            }
+            
+            info.textContent = `${packsNotSmoked} packs not smoked (${cigsAvoided} cigarettes)`;
+        }
+
+        // Update timeline display - Always vertical
+        function updateTimeline(elapsedHours) {
+            const container = document.getElementById('timelineContainer');
+            container.innerHTML = '';
+
+            // Find current milestone
+            let currentMilestoneIndex = -1;
+            for (let i = milestones.length - 1; i >= 0; i--) {
+                if (elapsedHours >= milestones[i].hours) {
+                    currentMilestoneIndex = i;
+                    break;
+                }
+            }
+
+            milestones.forEach((milestone, index) => {
+                const card = document.createElement('div');
+                card.className = 'milestone-card';
+                
+                let status, progressHtml = '';
+                const isCurrent = index === currentMilestoneIndex + 1 && elapsedHours < milestone.hours;
+                
+                if (elapsedHours >= milestone.hours) {
+                    status = 'completed';
+                } else if (isCurrent) {
+                    status = 'current';
+                } else if (milestone.hours > 0 && elapsedHours >= milestone.hours * 0.1) {
+                    status = 'in-progress';
+                    const progress = Math.min(100, (elapsedHours / milestone.hours) * 100);
+                    progressHtml = `
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${progress}%"></div>
+                        </div>
+                        <div class="progress-percentage">${Math.round(progress)}%</div>
+                    `;
+                } else {
+                    status = 'upcoming';
+                }
+
+                card.classList.add(status);
+                card.style.animationDelay = `${index * 25}ms`;
+                
+                let detailHtml = '';
+                if (status === 'current' || (status === 'completed' && milestone.visualPriority)) {
+                    detailHtml = `
+                        <div class="milestone-detail">
+                            ${milestone.detailDescription}
+                        </div>
+                        <div class="milestone-citations">
+                            Sources: ${milestone.citations.join(', ')}
+                        </div>
+                    `;
+                }
+                
+                card.innerHTML = `
+                    <div class="milestone-header">
+                        <div class="milestone-time">${milestone.label}</div>
+                    </div>
+                    <div class="milestone-benefit">${milestone.benefit}</div>
+                    ${progressHtml}
+                    ${detailHtml}
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+        // Enhanced share progress function
+        window.shareProgress = function() {
+            const days = document.getElementById('days').value;
+            const hours = document.getElementById('hours').value;
+            const cigs = document.getElementById('avgCigs').value;
+            const country = document.querySelector('input[name="country"]:checked').value;
+            
+            const hash = `#d=${days}&h=${hours}&c=${cigs}&ct=${country}`;
+            const url = window.location.origin + window.location.pathname + hash;
+            
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(url).then(() => {
+                    showCopyFeedback();
+                }).catch(() => {
+                    fallbackCopyToClipboard(url);
+                });
+            } else {
+                fallbackCopyToClipboard(url);
+            }
+        };
+
+        // Fallback copy method
+        function fallbackCopyToClipboard(text) {
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-999999px';
+            textArea.style.top = '-999999px';
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+                document.execCommand('copy');
+                showCopyFeedback();
+            } catch (err) {
+                console.error('Failed to copy: ', err);
+                alert('Unable to copy link. Please copy manually: ' + text);
+            }
+            
+            document.body.removeChild(textArea);
+        }
+
+        // Show copy feedback
+        function showCopyFeedback() {
+            const feedback = document.createElement('div');
+            feedback.className = 'copy-feedback';
+            feedback.textContent = '✓ Progress link copied!';
+            document.body.appendChild(feedback);
+            
+            setTimeout(() => {
+                feedback.remove();
+            }, 3000);
+        }
+
+        // Initialize the app when DOM is loaded
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+    </script>
+</body>
+</html> 
